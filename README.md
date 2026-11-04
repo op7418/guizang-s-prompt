@@ -44,6 +44,8 @@ Welcome to my prompt library! This repository contains all the high-quality AI p
 - [中国古代探宝三消游戏 UI](./image/%E4%B8%AD%E5%9B%BD%E5%8F%A4%E4%BB%A3%E6%8E%A2%E5%AE%9D%E4%B8%89%E6%B6%88%E6%B8%B8%E6%88%8F%20UI.md)
 - [Seedream 5.0 Pro 精细编辑提示词](./image/Seedream%205.0%20Pro%20%E7%B2%BE%E7%BB%86%E7%BC%96%E8%BE%91%E6%8F%90%E7%A4%BA%E8%AF%8D.md)
 - [Midjourney 风格码](./image/Midjourney%20%E9%A3%8E%E6%A0%BC%E7%A0%81.md)
+- [微软 Fluent 风 UI 包装](./image/%E5%BE%AE%E8%BD%AF%20Fluent%20%E9%A3%8E%20UI%20%E5%8C%85%E8%A3%85.md)
+- [家装九宫格分镜](./image/%E5%AE%B6%E8%A3%85%E4%B9%9D%E5%AE%AB%E6%A0%BC%E5%88%86%E9%95%9C.md)
 
 ## 📝 文本 (Text)
 
@@ -53,5 +55,18 @@ Welcome to my prompt library! This repository contains all the high-quality AI p
 
 - [首尾帧视频生成提示词](./Video/%E9%A6%96%E5%B0%BE%E5%B8%A7%E8%A7%86%E9%A2%91%E7%94%9F%E6%88%90%E6%8F%90%E7%A4%BA%E8%AF%8D.md)
 - [Seedance 2.0 产品 Logo 宣传动画](./Video/Seedance%202.0%20%E4%BA%A7%E5%93%81%20Logo%20%E5%AE%A3%E4%BC%A0%E5%8A%A8%E7%94%BB.md)
-- [Seedance 2.0 行业实战提示词合集](./Video/Seedance%202.0%20%E8%A1%8C%E4%B8%9A%E5%AE%9E%E6%88%98%E6%8F%90%E7%A4%BA%E8%AF%8D%E5%90%88%E9%9B%86.md)
+- [Seedance 2.0 兰州拉面广告](./Video/Seedance%202.0%20%E5%85%B0%E5%B7%9E%E6%8B%89%E9%9D%A2%E5%B9%BF%E5%91%8A.md)
+- [Seedance 2.0 品牌宣传片（无印良品）](./Video/Seedance%202.0%20%E5%93%81%E7%89%8C%E5%AE%A3%E4%BC%A0%E7%89%87%EF%BC%88%E6%97%A0%E5%8D%B0%E8%89%AF%E5%93%81%EF%BC%89.md)
+- [Seedance 2.0 健身教学](./Video/Seedance%202.0%20%E5%81%A5%E8%BA%AB%E6%95%99%E5%AD%A6.md)
+- [Seedance 2.0 Fluent 风单图视频](./Video/Seedance%202.0%20Fluent%20%E9%A3%8E%E5%8D%95%E5%9B%BE%E8%A7%86%E9%A2%91.md)
+- [Seedance 2.0 Fluent 风多图视频](./Video/Seedance%202.0%20Fluent%20%E9%A3%8E%E5%A4%9A%E5%9B%BE%E8%A7%86%E9%A2%91.md)
+- [Seedance 2.0 服装换装展示](./Video/Seedance%202.0%20%E6%9C%8D%E8%A3%85%E6%8D%A2%E8%A3%85%E5%B1%95%E7%A4%BA.md)
+- [Seedance 2.0 户型图样板间参观视频](./Video/Seedance%202.0%20%E6%88%B7%E5%9E%8B%E5%9B%BE%E6%A0%B7%E6%9D%BF%E9%97%B4%E5%8F%82%E8%A7%82%E8%A7%86%E9%A2%91.md)
+- [Seedance 2.0 参考 Vlog 风格](./Video/Seedance%202.0%20%E5%8F%82%E8%80%83%20Vlog%20%E9%A3%8E%E6%A0%BC.md)
+- [Seedance 2.0 视频播客](./Video/Seedance%202.0%20%E8%A7%86%E9%A2%91%E6%92%AD%E5%AE%A2.md)
+- [Seedance 2.0 音频生成爱情故事](./Video/Seedance%202.0%20%E9%9F%B3%E9%A2%91%E7%94%9F%E6%88%90%E7%88%B1%E6%83%85%E6%95%85%E4%BA%8B.md)
+- [Seedance 2.0 动作迁移-魔法扫帚](./Video/Seedance%202.0%20%E5%8A%A8%E4%BD%9C%E8%BF%81%E7%A7%BB-%E9%AD%94%E6%B3%95%E6%89%AB%E5%B8%9A.md)
+- [Seedance 2.0 动作迁移-高科技长矛战士](./Video/Seedance%202.0%20%E5%8A%A8%E4%BD%9C%E8%BF%81%E7%A7%BB-%E9%AB%98%E7%A7%91%E6%8A%80%E9%95%BF%E7%9F%9B%E6%88%98%E5%A3%AB.md)
+- [Seedance 2.0 小说原文生成动漫](./Video/Seedance%202.0%20%E5%B0%8F%E8%AF%B4%E5%8E%9F%E6%96%87%E7%94%9F%E6%88%90%E5%8A%A8%E6%BC%AB.md)
+- [Seedance 2.0 延长视频](./Video/Seedance%202.0%20%E5%BB%B6%E9%95%BF%E8%A7%86%E9%A2%91.md)
 
