@@ -1,0 +1,79 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>歸藏的提示词库</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fafaf8;--fg:#0a0a0a;--mute:#6b6b6b;--line:#0a0a0a;--accent:#002FA7}
+*{box-sizing:border-box;margin:0;padding:0;font-style:normal!important}
+body{background:var(--bg);color:var(--fg);font-family:Inter,"PingFang SC","Noto Sans SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1200px;margin:0 auto;padding:20px 16px 80px}
+header{border-bottom:3px solid var(--line);padding:24px 0 20px}
+.kicker{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:600}
+h1{font-size:44px;line-height:1.05;font-weight:800;letter-spacing:-.02em;margin:10px 0 8px}
+.sub{font-size:14px;color:var(--mute)}.sub a{color:var(--fg)}
+.bar{position:sticky;top:0;background:var(--bg);z-index:5;padding:12px 0;border-bottom:1px solid var(--line)}
+#q{width:100%;font:inherit;font-size:16px;padding:12px;border:2px solid var(--line);border-radius:0;background:#fff;outline:none}
+#q:focus{border-color:var(--accent)}
+.chips{display:flex;gap:6px;overflow-x:auto;margin-top:8px;padding-bottom:2px;scrollbar-width:none}
+.chip{flex:none;font:inherit;font-size:13px;padding:6px 10px;border:1px solid var(--line);background:#fff;color:var(--fg);border-radius:0;cursor:pointer;white-space:nowrap}
+.chip.on{background:var(--fg);color:#fff}.chips.cat .chip.on{background:var(--accent);border-color:var(--accent)}
+.count{font-size:12px;color:var(--mute);margin:14px 0 10px;font-family:"JetBrains Mono",monospace}
+.grid{display:grid;grid-template-columns:1fr;gap:16px}
+@media(min-width:640px){.grid{grid-template-columns:1fr 1fr}h1{font-size:64px}}
+@media(min-width:1000px){.grid{grid-template-columns:1fr 1fr 1fr}}
+.card{background:#fff;border:1px solid var(--line);display:flex;flex-direction:column;cursor:pointer}
+.card:active{transform:scale(.99)}
+.thumb{aspect-ratio:4/3;background:#eeeeea;overflow:hidden;border-bottom:1px solid var(--line);position:relative}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;color:var(--mute);background:repeating-linear-gradient(0deg,transparent 0 15px,#e2e2dc 15px 16px),repeating-linear-gradient(90deg,transparent 0 15px,#e2e2dc 15px 16px)}
+.ph b{font-size:30px;color:var(--fg);font-weight:800}.ph span{font-size:11px;letter-spacing:.15em}
+.body{padding:14px;display:flex;flex-direction:column;gap:8px;flex:1}
+.meta{display:flex;justify-content:space-between;font-size:12px;font-family:"JetBrains Mono",monospace;color:var(--mute)}
+.meta .c{color:var(--accent);font-weight:600}
+h2{font-size:19px;line-height:1.3;font-weight:800}
+.desc{font-size:13px;line-height:1.6;color:#333;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:auto}
+.tag{font-size:11px;border:1px solid var(--line);padding:2px 6px}
+.n{font-size:11px;background:var(--accent);color:#fff;padding:2px 6px}
+dialog{border:none;max-width:860px;width:100%;max-height:100%;height:100%;margin:auto;background:var(--bg);padding:0}
+@media(min-width:900px){dialog{height:92vh;border:2px solid var(--line)}}
+dialog::backdrop{background:rgba(0,0,0,.6)}
+.dh{position:sticky;top:0;background:var(--bg);border-bottom:3px solid var(--line);padding:14px 16px;display:flex;gap:12px;align-items:flex-start;z-index:2}
+.dh h3{font-size:22px;font-weight:800;flex:1;line-height:1.25}
+.x{font:inherit;font-size:22px;border:2px solid var(--line);background:#fff;width:40px;height:40px;cursor:pointer;flex:none}
+.db{padding:16px;display:flex;flex-direction:column;gap:14px}
+.db .imgs{display:flex;gap:8px;overflow-x:auto}.db .imgs img{max-height:360px;max-width:100%;border:1px solid var(--line)}
+.links a{color:var(--accent);font-weight:600;margin-right:14px;font-size:14px}
+.p{border:1px solid var(--line);background:#fff}
+.p summary{list-style:none;padding:12px;font-weight:600;font-size:15px;cursor:pointer;display:flex;justify-content:space-between;gap:8px}
+.p summary::-webkit-details-marker{display:none}.p summary:after{content:"+";font-weight:800}.p[open] summary:after{content:"−"}
+.p pre{white-space:pre-wrap;word-break:break-word;font-family:"JetBrains Mono","PingFang SC",monospace;font-size:13px;line-height:1.65;padding:12px;border-top:1px solid var(--line);max-height:60vh;overflow:auto}
+.cp{font:inherit;font-size:13px;font-weight:600;background:var(--fg);color:#fff;border:none;padding:8px 14px;cursor:pointer;margin:0 12px 12px}
+.cp.ok{background:var(--accent)}
+footer{margin-top:40px;font-size:12px;color:var(--mute);border-top:1px solid var(--line);padding-top:12px}
+</style></head><body><div class="wrap">
+<header><div class="kicker">Guizang's Prompts</div><h1>歸藏的<br>提示词库</h1><p class="sub">图像、视频与文本生成提示词 · <a href="https://github.com/op7418/guizang-s-prompt">GitHub</a> · <a href="https://x.com/op7418">@op7418</a></p></header>
+<div class="bar"><input id="q" type="search" placeholder="搜索标题、描述或提示词内容"><div class="chips cat" id="cats"></div><div class="chips" id="models"></div></div>
+<div class="count" id="count"></div><div class="grid" id="grid"></div>
+<footer>数据由 gallery/build.py 从仓库中的提示词文件生成。</footer></div>
+<dialog id="dlg"></dialog>
+<script>
+const D=/*DATA*/[];
+const S={cat:'全部',model:'全部',q:''};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const norm=m=>m.replace(/（.*?）|\(.*?\)/g,'').trim();
+const allModels=[...new Set(D.flatMap(d=>d.models.flatMap(m=>norm(m).split(/\s*\/\s*/))))].filter(Boolean);
+const chips=(el,list,key)=>{el.innerHTML=['全部',...list].map(v=>`<button class="chip${S[key]===v?' on':''}" data-v="${esc(v)}">${esc(v)}</button>`).join('');el.onclick=e=>{const b=e.target.closest('.chip');if(!b)return;S[key]=b.dataset.v;render()}};
+function render(){chips(cats,['图像','视频','文本'],'cat');chips(models,allModels,'model');
+const q=S.q.toLowerCase();
+const L=D.filter(d=>(S.cat==='全部'||d.cat===S.cat)&&(S.model==='全部'||d.models.some(m=>norm(m).split(/\s*\/\s*/).includes(S.model)))&&(!q||(d.title+d.desc+d.models.join()+d.prompts.map(p=>p.name+p.text).join()).toLowerCase().includes(q)));
+count.textContent=`${L.length} / ${D.length} 条提示词`;
+grid.innerHTML=L.map(d=>{const i=D.indexOf(d);return `<article class="card" data-i="${i}"><div class="thumb">${d.images[0]?`<img loading="lazy" decoding="async" src="${d.images[0]}" alt="${esc(d.title)}">`:`<div class="ph"><b>${esc(d.title.slice(0,2))}</b><span>NO PREVIEW</span></div>`}</div><div class="body"><div class="meta"><span class="c">${d.cat}</span><span>${d.date||'—'}</span></div><h2>${esc(d.title)}</h2><p class="desc">${esc(d.desc)}</p><div class="tags">${d.models.map(m=>`<span class="tag">${esc(m)}</span>`).join('')}${d.prompts.length>1?`<span class="n">${d.prompts.length} 条</span>`:''}</div></div></article>`}).join('')}
+grid.onclick=e=>{const c=e.target.closest('.card');if(c)open_(+c.dataset.i)};
+function open_(i){const d=D[i];const multi=d.prompts.length>1;
+dlg.innerHTML=`<div class="dh"><h3>${esc(d.title)}</h3><button class="x" onclick="dlg.close()">×</button></div><div class="db"><div class="meta"><span class="c">${d.cat}</span><span>${d.date||''}</span></div><div class="tags">${d.models.map(m=>`<span class="tag">${esc(m)}</span>`).join('')}</div>${d.desc?`<p style="font-size:14px;line-height:1.7">${esc(d.desc)}</p>`:''}${d.images.length?`<div class="imgs">${d.images.map(s=>`<img loading="lazy" src="${s}">`).join('')}</div>`:''}<div class="links">${d.source?`<a href="${d.source}" target="_blank">X 原帖 ↗</a>`:''}<a href="${d.url}" target="_blank">GitHub 文件 ↗</a></div>${d.prompts.map((p,j)=>`<details class="p"${multi?'':' open'}><summary>${esc(p.name||'提示词')}</summary><pre>${esc(p.text)}</pre><button class="cp" data-j="${j}">复制提示词</button></details>`).join('')}</div>`;
+dlg.onclick=e=>{const b=e.target.closest('.cp');if(b){navigator.clipboard.writeText(d.prompts[+b.dataset.j].text).then(()=>{b.textContent='已复制 ✓';b.classList.add('ok');setTimeout(()=>{b.textContent='复制提示词';b.classList.remove('ok')},1500)})}else if(e.target===dlg)dlg.close()};
+dlg.showModal();history.replaceState(null,'','#'+encodeURIComponent(d.file))}
+dlg.addEventListener('close',()=>history.replaceState(null,'',location.pathname));
+q.oninput=e=>{S.q=e.target.value;render()};render();
+if(location.hash){const f=decodeURIComponent(location.hash.slice(1));const i=D.findIndex(d=>d.file===f);if(i>=0)open_(i)}
+</script></body></html>

@@ -1,5 +1,7 @@
 # ☯️ 归藏的提示词库 (Guizang's Prompts)
 
+**🌐 在线浏览 / Gallery：[op7418.github.io/guizang-s-prompt](https://op7418.github.io/guizang-s-prompt/)**
+
 ![License](https://img.shields.io/github/license/op7418/guizang-s-prompt?style=flat-square)
 ![Repo Size](https://img.shields.io/github/repo-size/op7418/guizang-s-prompt?style=flat-square)
 ![Last Commit](https://img.shields.io/github/last-commit/op7418/guizang-s-prompt?style=flat-square)
