@@ -17,13 +17,16 @@ h1{font-size:44px;line-height:1.05;font-weight:800;letter-spacing:-.02em;margin:
 .chip{flex:none;font:inherit;font-size:13px;padding:6px 10px;border:1px solid var(--line);background:#fff;color:var(--fg);border-radius:0;cursor:pointer;white-space:nowrap}
 .chip.on{background:var(--fg);color:#fff}.chips.cat .chip.on{background:var(--accent);border-color:var(--accent)}
 .count{font-size:12px;color:var(--mute);margin:14px 0 10px;font-family:"JetBrains Mono",monospace}
-.grid{display:grid;grid-template-columns:1fr;gap:16px}
-@media(min-width:640px){.grid{grid-template-columns:1fr 1fr}h1{font-size:64px}}
-@media(min-width:1000px){.grid{grid-template-columns:1fr 1fr 1fr}}
+.grid{display:flex;gap:10px;align-items:flex-start}.col{flex:1;min-width:0;display:flex;flex-direction:column;gap:10px}
+@media(min-width:640px){.grid,.col{gap:16px}h1{font-size:64px}}
 .card{background:#fff;border:1px solid var(--line);display:flex;flex-direction:column;cursor:pointer}
 .card:active{transform:scale(.99)}
-.thumb{aspect-ratio:4/3;background:#eeeeea;overflow:hidden;border-bottom:1px solid var(--line);position:relative}
-.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.thumb{background:#eeeeea;overflow:hidden;border-bottom:1px solid var(--line);position:relative}
+.thumb img{width:100%;height:auto;display:block}
+.thumb.ph0{aspect-ratio:4/3}
+.thumb.long{max-height:none}.thumb.long::after{content:"";position:absolute;left:0;right:0;bottom:0;height:30%;background:linear-gradient(transparent,#fff)}
+.lt{position:absolute;top:0;left:0;z-index:1;background:#111;color:#fff;font-size:11px;font-weight:700;letter-spacing:.08em;padding:4px 8px}
+@media(max-width:639px){.card .body{padding:10px}.card h2{font-size:15px}.card .desc{display:none}.card .tags .tag:nth-child(n+3){display:none}}
 .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;color:var(--mute);background:repeating-linear-gradient(0deg,transparent 0 15px,#e2e2dc 15px 16px),repeating-linear-gradient(90deg,transparent 0 15px,#e2e2dc 15px 16px)}
 .ph b{font-size:30px;color:var(--fg);font-weight:800}.ph span{font-size:11px;letter-spacing:.15em}
 .body{padding:14px;display:flex;flex-direction:column;gap:8px;flex:1}
@@ -41,7 +44,7 @@ dialog::backdrop{background:rgba(0,0,0,.6)}
 .dh h3{font-size:22px;font-weight:800;flex:1;line-height:1.25}
 .x{font:inherit;font-size:22px;border:2px solid var(--line);background:#fff;width:40px;height:40px;cursor:pointer;flex:none}
 .db{padding:16px;display:flex;flex-direction:column;gap:14px}
-.db .imgs{display:flex;gap:8px;overflow-x:auto}.db .imgs img{max-height:360px;max-width:100%;border:1px solid var(--line)}
+.db .imgs{display:grid;gap:8px}.db .imgs img{width:100%;height:auto;display:block;border:1px solid var(--line)}
 .links a{color:var(--accent);font-weight:600;margin-right:14px;font-size:14px}
 .p{border:1px solid var(--line);background:#fff}
 .p summary{list-style:none;padding:12px;font-weight:600;font-size:15px;cursor:pointer;display:flex;justify-content:space-between;gap:8px}
@@ -67,7 +70,15 @@ function render(){chips(cats,['图像','视频','文本'],'cat');chips(models,al
 const q=S.q.toLowerCase();
 const L=D.filter(d=>(S.cat==='全部'||d.cat===S.cat)&&(S.model==='全部'||d.models.some(m=>norm(m).split(/\s*\/\s*/).includes(S.model)))&&(!q||(d.title+d.desc+d.models.join()+d.prompts.map(p=>p.name+p.text).join()).toLowerCase().includes(q)));
 count.textContent=`${L.length} / ${D.length} 条提示词`;
-grid.innerHTML=L.map(d=>{const i=D.indexOf(d);return `<article class="card" data-i="${i}"><div class="thumb">${d.images[0]?`<img loading="lazy" decoding="async" src="${d.images[0]}" alt="${esc(d.title)}">`:`<div class="ph"><b>${esc(d.title.slice(0,2))}</b><span>NO PREVIEW</span></div>`}</div><div class="body"><div class="meta"><span class="c">${d.cat}</span><span>${d.date||'—'}</span></div><h2>${esc(d.title)}</h2><p class="desc">${esc(d.desc)}</p><div class="tags">${d.models.map(m=>`<span class="tag">${esc(m)}</span>`).join('')}${d.prompts.length>1?`<span class="n">${d.prompts.length} 条</span>`:''}</div></div></article>`}).join('')}
+LAST=L;layout()}
+let LAST=[];const NC=()=>innerWidth>=1280?4:innerWidth>=900?3:2;
+function card(d){const i=D.indexOf(d);const w=d.dims&&d.dims[0];const r=w?w[1]/w[0]:.75;const long=r>2.2;
+const th=d.images[0]?`<div class="thumb${long?' long':''}" style="${long?'aspect-ratio:1/2.2':`aspect-ratio:${w[0]}/${w[1]}`}">${long?'<span class="lt">长图</span>':''}<img loading="lazy" decoding="async" src="${d.images[0]}" width="${w[0]}" height="${w[1]}" alt="${esc(d.title)}"></div>`:`<div class="thumb ph0"><div class="ph"><b>${esc(d.title.slice(0,2))}</b><span>NO PREVIEW</span></div></div>`;
+return [Math.min(r,2.2)+.55,`<article class="card" data-i="${i}">${th}<div class="body"><div class="meta"><span class="c">${d.cat}</span><span>${d.date||'—'}</span></div><h2>${esc(d.title)}</h2><p class="desc">${esc(d.desc)}</p><div class="tags">${d.models.map(m=>`<span class="tag">${esc(m)}</span>`).join('')}${d.prompts.length>1?`<span class="n">${d.prompts.length} 条</span>`:''}</div></div></article>`]}
+let curN=0;function layout(){const n=NC();curN=n;const H=Array(n).fill(0),C=Array.from({length:n},()=>[]);
+LAST.forEach((d,k)=>{const[h,html]=card(d);let j=k<n?k:H.indexOf(Math.min(...H));C[j].push(html);H[j]+=h});
+grid.innerHTML=C.map(c=>`<div class="col">${c.join('')}</div>`).join('')}
+addEventListener('resize',()=>{if(NC()!==curN)layout()});
 grid.onclick=e=>{const c=e.target.closest('.card');if(c)open_(+c.dataset.i)};
 function open_(i){const d=D[i];const multi=d.prompts.length>1;
 dlg.innerHTML=`<div class="dh"><h3>${esc(d.title)}</h3><button class="x" onclick="dlg.close()">×</button></div><div class="db"><div class="meta"><span class="c">${d.cat}</span><span>${d.date||''}</span></div><div class="tags">${d.models.map(m=>`<span class="tag">${esc(m)}</span>`).join('')}</div>${d.desc?`<p style="font-size:14px;line-height:1.7">${esc(d.desc)}</p>`:''}${d.images.length?`<div class="imgs">${d.images.map(s=>`<img loading="lazy" src="${s}">`).join('')}</div>`:''}<div class="links">${d.source?`<a href="${d.source}" target="_blank">X 原帖 ↗</a>`:''}<a href="${d.url}" target="_blank">GitHub 文件 ↗</a></div>${d.prompts.map((p,j)=>`<details class="p"${multi?'':' open'}><summary>${esc(p.name||'提示词')}</summary><pre>${esc(p.text)}</pre><button class="cp" data-j="${j}">复制提示词</button></details>`).join('')}</div>`;

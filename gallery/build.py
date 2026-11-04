@@ -66,6 +66,7 @@ for d, cat in CATS.items():
         if o.get('source'): it['source'] = o['source']
         if o.get('image'): it['images'] = [o['image']] + it['images']
         it['images'] = [x for x in (web_img(i) for i in it['images']) if x]
+        it['dims'] = [list(Image.open(DOCS / x).size) for x in it['images']]
         it.update(cat=cat, file=rel, url='https://github.com/op7418/guizang-s-prompt/blob/main/' + rel, date=date_of(it['source']))
         items.append(it)
 items.sort(key=lambda x: x['date'] or '0000', reverse=True)
