@@ -1,8 +1,14 @@
 ## Anthropic 风格的PPT生成
 
+来源：[X 原帖](https://x.com/op7418/status/1993159387796718006)
+
 ### 适配模型
 
 - Nano Banana Pro
+
+### 示例
+
+![示例](./assets/Anthropic风格的PPT生成-示例.jpg)
 
 ### 提示词
 

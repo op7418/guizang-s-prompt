@@ -1,5 +1,7 @@
 ## 渐变拟物玻璃卡片风格 PPT
 
+来源：[X 原帖](https://x.com/op7418/status/1994640215160287637)
+
 ### 概述
 整了一套非常漂亮的渐变拟物玻璃卡片风格 PPT 提示词，可以在 NotebookLM、Youmind、Listenhub、Lovart等支持 Nano Banana Pro 生成 PPT 的位置使用
 
@@ -7,6 +9,10 @@
 
 - Nano Banana Pro
 - Seedream
+
+### 示例
+
+![示例](./assets/渐变拟物玻璃卡片风格PPT-示例.jpg)
 
 ### 提示词
 你是一位专家级UI UX演示设计师，请生成高保真、未来科技感的16比9演示文稿幻灯片。请根据视觉平衡美学，自动在封面、网格布局或数据可视化中选择一种最完美的构图。

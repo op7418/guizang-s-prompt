@@ -1,5 +1,7 @@
 ## 矢量插画风格PPT生成
 
+来源：[X 原帖](https://x.com/op7418/status/1998006697273819326)
+
 ### 适用模型及软件
 
 - Nano Banana Pro
@@ -7,6 +9,10 @@
 - Youmind
 - Listenhub
 - Lovart
+
+### 示例
+
+![示例](./assets/矢量插画风格PPT生成-示例.jpg)
 
 ### 提示词
 

@@ -5,5 +5,13 @@
   },
   "image/屏幕使用时长可视化海报.md": {
     "title": "屏幕使用时长可视化海报"
+  },
+  "image/HappyNewYearPoster.json": {
+    "source": "https://x.com/op7418/status/2005486114510180545",
+    "image": "image/assets/HappyNewYearPoster-示例.jpg"
+  },
+  "image/Merry Christmas Poster.json": {
+    "source": "https://x.com/op7418/status/2003761591247065360",
+    "image": "image/assets/MerryChristmasPoster-示例.jpg"
   }
 }
