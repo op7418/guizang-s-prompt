@@ -115,6 +115,8 @@ Welcome to my prompt library! This repository contains all the high-quality AI p
 - [照片渐变色板](./image/%E7%85%A7%E7%89%87%E6%B8%90%E5%8F%98%E8%89%B2%E6%9D%BF.md)
 - [周刊封面：掌中星河](./image/%E5%91%A8%E5%88%8A%E5%B0%81%E9%9D%A2%EF%BC%9A%E6%8E%8C%E4%B8%AD%E6%98%9F%E6%B2%B3.md)
 
+- [大肥鱼 GIF 表情包](./image/大肥鱼GIF表情包.md)
+
 ## 📝 文本 (Text)
 
 - [手游高光时刻动效](./Text/%E6%89%8B%E6%B8%B8%E9%AB%98%E5%85%89%E6%97%B6%E5%88%BB%E5%8A%A8%E6%95%88.md)
