@@ -8,6 +8,58 @@ DOCS = ROOT / 'docs'; IMG = DOCS / 'img'; IMG.mkdir(parents=True, exist_ok=True)
 OV = json.loads((ROOT / 'gallery/overrides.json').read_text())
 CATS = {'image': '图像', 'Video': '视频', 'Text': '文本'}
 
+# Filter chips merge versioned model names into one family.
+# Card tags still show the original model string from the Markdown.
+FAMILY_RULES = [
+    (re.compile(r'nano\s*banana', re.I), 'Nano Banana'),
+    (re.compile(r'seedance', re.I), 'Seedance'),
+    (re.compile(r'seedream', re.I), 'Seedream'),
+    # GPT-4o / GPT Image 2.x / ChatGPT Images → one filter chip
+    (re.compile(r'(chatgpt|gpt[-\s]?image|^gpt\b)', re.I), 'GPT Image'),
+    (re.compile(r'midjourney', re.I), 'Midjourney'),
+    (re.compile(r'(^|\s)veo(\s|$|\d)', re.I), 'Veo'),
+    (re.compile(r'^即梦'), '即梦'),
+    (re.compile(r'^sora', re.I), 'Sora'),
+    (re.compile(r'^kling', re.I), 'Kling'),
+    (re.compile(r'^flux', re.I), 'FLUX'),
+    (re.compile(r'^niji', re.I), 'Niji'),
+    (re.compile(r'^gemini', re.I), 'Gemini'),
+]
+_VERSION_TAIL = re.compile(
+    r'[\s_-]+(?:v?\d+(?:\.\d+)*(?:[a-z])?|pro|lite|ultra|max|preview|mini)\s*$',
+    re.I,
+)
+
+def family_of(name: str) -> str:
+    s = re.sub(r'[（(].*?[）)]', '', name).strip()
+    if not s:
+        return name.strip() or name
+    for pat, fam in FAMILY_RULES:
+        if pat.search(s):
+            return fam
+    stripped = s
+    while True:
+        nxt = _VERSION_TAIL.sub('', stripped).strip()
+        if nxt == stripped:
+            break
+        stripped = nxt
+    return stripped or s
+
+def families_of(models):
+    out = []
+    for m in models:
+        for part in re.split(r'\s*/\s*', m):
+            part = part.strip()
+            if part:
+                out.append(family_of(part))
+    # stable unique, case-insensitive
+    seen, uniq = set(), []
+    for f in out:
+        k = f.lower()
+        if k not in seen:
+            seen.add(k); uniq.append(f)
+    return uniq
+
 def date_of(url):
     m = re.search(r'/status/(\d+)', url or '')
     if not m: return ''
@@ -67,10 +119,14 @@ for d, cat in CATS.items():
         if o.get('image'): it['images'] = [o['image']] + it['images']
         it['images'] = [x for x in (web_img(i) for i in it['images']) if x]
         it['dims'] = [list(Image.open(DOCS / x).size) for x in it['images']]
+        it['families'] = families_of(it['models'])
         it.update(cat=cat, file=rel, url='https://github.com/op7418/guizang-s-prompt/blob/main/' + rel, date=date_of(it['source']))
         items.append(it)
 items.sort(key=lambda x: x['date'] or '0000', reverse=True)
 tpl = (ROOT / 'gallery/template.html').read_text()
 (DOCS / 'index.html').write_text(tpl.replace('/*DATA*/[]', json.dumps(items, ensure_ascii=False).replace('</', '<\\/')))
 (DOCS / '.nojekyll').write_text('')
+from collections import Counter
+fc = Counter(f for i in items for f in i['families'])
 print(len(items), 'cards;', 'no image:', [i['title'] for i in items if not i['images']])
+print('families:', ', '.join(f'{k}({v})' for k, v in sorted(fc.items(), key=lambda x: (-x[1], x[0]))))

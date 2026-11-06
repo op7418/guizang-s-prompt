@@ -6,10 +6,16 @@
 *{box-sizing:border-box;margin:0;padding:0;font-style:normal!important}
 body{background:var(--bg);color:var(--fg);font-family:Inter,"PingFang SC","Noto Sans SC","Microsoft YaHei",sans-serif;-webkit-font-smoothing:antialiased}
 .wrap{max-width:1200px;margin:0 auto;padding:20px 16px 80px}
-header{border-bottom:3px solid var(--line);padding:24px 0 20px}
+header{border-bottom:3px solid var(--line);padding:32px 0;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.hdr-l{min-width:0;flex:1}
 .kicker{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:600}
-h1{font-size:44px;line-height:1.05;font-weight:800;letter-spacing:-.02em;margin:10px 0 8px}
+h1{font-size:28px;line-height:1.15;font-weight:800;letter-spacing:-.02em;margin:8px 0 6px;white-space:nowrap}
 .sub{font-size:14px;color:var(--mute)}.sub a{color:var(--fg)}
+.star-btn{flex:none;display:inline-flex;align-items:center;gap:8px;padding:11px 16px;background:var(--fg);color:#fff;text-decoration:none;border:2px solid var(--fg);font-weight:700;font-size:14px;line-height:1;white-space:nowrap}
+.star-btn:hover,.star-btn:focus-visible{background:var(--accent);border-color:var(--accent);outline:none}
+.star-btn svg{width:16px;height:16px;flex:none}
+.star-btn .lbl{letter-spacing:.02em}
+.star-btn .n{background:#fff;color:var(--fg);padding:3px 8px;font-family:"JetBrains Mono",monospace;font-size:13px;font-weight:800;min-width:2.2em;text-align:center}
 .bar{position:sticky;top:0;background:var(--bg);z-index:5;padding:12px 0;border-bottom:1px solid var(--line)}
 #q{width:100%;font:inherit;font-size:16px;padding:12px;border:2px solid var(--line);border-radius:0;background:#fff;outline:none}
 #q:focus{border-color:var(--accent)}
@@ -18,7 +24,8 @@ h1{font-size:44px;line-height:1.05;font-weight:800;letter-spacing:-.02em;margin:
 .chip.on{background:var(--fg);color:#fff}.chips.cat .chip.on{background:var(--accent);border-color:var(--accent)}
 .count{font-size:12px;color:var(--mute);margin:14px 0 10px;font-family:"JetBrains Mono",monospace}
 .grid{display:flex;gap:10px;align-items:flex-start}.col{flex:1;min-width:0;display:flex;flex-direction:column;gap:10px}
-@media(min-width:640px){.grid,.col{gap:16px}h1{font-size:64px}}
+@media(min-width:640px){.grid,.col{gap:16px}h1{font-size:40px}.star-btn{padding:12px 18px;font-size:15px}}
+@media(max-width:639px){header{padding:28px 0;align-items:flex-start}h1{font-size:22px;white-space:normal}.star-btn{padding:9px 12px;font-size:12px;gap:6px}.star-btn .n{font-size:12px;padding:2px 6px}}
 .card{background:#fff;border:1px solid var(--line);display:flex;flex-direction:column;cursor:pointer}
 .card:active{transform:scale(.99)}
 .thumb{background:#eeeeea;overflow:hidden;border-bottom:1px solid var(--line);position:relative}
@@ -54,7 +61,18 @@ dialog::backdrop{background:rgba(0,0,0,.6)}
 .cp.ok{background:var(--accent)}
 footer{margin-top:40px;font-size:12px;color:var(--mute);border-top:1px solid var(--line);padding-top:12px}
 </style></head><body><div class="wrap">
-<header><div class="kicker">Guizang's Prompts</div><h1>歸藏的<br>提示词库</h1><p class="sub">图像、视频与文本生成提示词 · <a href="https://github.com/op7418/guizang-s-prompt">GitHub</a> · <a href="https://x.com/op7418">@op7418</a></p></header>
+<header>
+  <div class="hdr-l">
+    <div class="kicker">Guizang's Prompts</div>
+    <h1>歸藏的提示词库</h1>
+    <p class="sub">图像、视频与文本生成提示词 · <a href="https://x.com/op7418">@op7418</a></p>
+  </div>
+  <a class="star-btn" id="starBtn" href="https://github.com/op7418/guizang-s-prompt" target="_blank" rel="noopener">
+    <svg viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25z"/></svg>
+    <span class="lbl">Star on GitHub</span>
+    <span class="n" id="stars">—</span>
+  </a>
+</header>
 <div class="bar"><input id="q" type="search" placeholder="搜索标题、描述或提示词内容"><div class="chips cat" id="cats"></div><div class="chips" id="models"></div></div>
 <div class="count" id="count"></div><div class="grid" id="grid"></div>
 <footer>数据由 gallery/build.py 从仓库中的提示词文件生成。</footer></div>
@@ -63,12 +81,12 @@ footer{margin-top:40px;font-size:12px;color:var(--mute);border-top:1px solid var
 const D=/*DATA*/[];
 const S={cat:'全部',model:'全部',q:''};
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const norm=m=>m.replace(/（.*?）|\(.*?\)/g,'').trim();
-const allModels=[...new Set(D.flatMap(d=>d.models.flatMap(m=>norm(m).split(/\s*\/\s*/))))].filter(Boolean);
+const famCount={};D.forEach(d=>(d.families||[]).forEach(f=>{famCount[f]=(famCount[f]||0)+1}));
+const allModels=Object.keys(famCount).sort((a,b)=>famCount[b]-famCount[a]||a.localeCompare(b,'zh'));
 const chips=(el,list,key)=>{el.innerHTML=['全部',...list].map(v=>`<button class="chip${S[key]===v?' on':''}" data-v="${esc(v)}">${esc(v)}</button>`).join('');el.onclick=e=>{const b=e.target.closest('.chip');if(!b)return;S[key]=b.dataset.v;render()}};
 function render(){chips(cats,['图像','视频','文本'],'cat');chips(models,allModels,'model');
 const q=S.q.toLowerCase();
-const L=D.filter(d=>(S.cat==='全部'||d.cat===S.cat)&&(S.model==='全部'||d.models.some(m=>norm(m).split(/\s*\/\s*/).includes(S.model)))&&(!q||(d.title+d.desc+d.models.join()+d.prompts.map(p=>p.name+p.text).join()).toLowerCase().includes(q)));
+const L=D.filter(d=>(S.cat==='全部'||d.cat===S.cat)&&(S.model==='全部'||(d.families||[]).includes(S.model))&&(!q||(d.title+d.desc+d.models.join()+d.prompts.map(p=>p.name+p.text).join()).toLowerCase().includes(q)));
 count.textContent=`${L.length} / ${D.length} 条提示词`;
 LAST=L;layout()}
 let LAST=[];const NC=()=>innerWidth>=1280?4:innerWidth>=900?3:2;
@@ -87,4 +105,7 @@ dlg.showModal();history.replaceState(null,'','#'+encodeURIComponent(d.file))}
 dlg.addEventListener('close',()=>history.replaceState(null,'',location.pathname));
 q.oninput=e=>{S.q=e.target.value;render()};render();
 if(location.hash){const f=decodeURIComponent(location.hash.slice(1));const i=D.findIndex(d=>d.file===f);if(i>=0)open_(i)}
+fetch('https://api.github.com/repos/op7418/guizang-s-prompt').then(r=>r.ok?r.json():Promise.reject()).then(d=>{
+  if(typeof d.stargazers_count==='number'){stars.textContent=d.stargazers_count.toLocaleString('en-US');starBtn.title=`${d.stargazers_count} stars on GitHub`}
+}).catch(()=>{stars.textContent='Star'});
 </script></body></html>
